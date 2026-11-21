@@ -3166,7 +3166,7 @@ const ev = (m,d,t,s) => `<a class="ev" href="#/community"><span class="date"><sm
    PÁGINAS
    ========================================================= */
 /* @personalizar: páginas (secciones con sec(layout, fondo, columnas) y web parts con wp()) */
-const comBtns = () => [['bulb','Submit an idea','#/request','Microsoft Forms · 3 min'],['chat','Request project support','#/request','We reply within 5 working days'],['funnel','See the development funnel','#/request','Live board, updated monthly']].map(a=>`<a class="ql-btn" href="${a[2]}">${ic(a[0])}<span>${a[1]}<small>${a[3]}</small></span>${ic('arrow','arr')}</a>`).join('');
+const comBtns = () => [['bulb','Submit an idea','#/request','Microsoft Forms · 3 min'],['chat','Request project support','#/request','We reply within 3 working days'],['funnel','See the development funnel','#/request','Live board, updated monthly']].map(a=>`<a class="ql-btn" href="${a[2]}">${ic(a[0])}<span>${a[1]}<small>${a[3]}</small></span>${ic('arrow','arr')}</a>`).join('');
 /* chips: en el Estilo 5 los clusters y los estados llevan color (punto + tinte + tinta AA); los temas quedan neutros */
 const CHIPK={'Data Intelligence':'di','DI':'di','Computational Design':'cd','CD':'cd','Reality Capture':'rc','RC':'rc','VDC':'vdc','Live':'lime','Pilot':'amber'};
 const chip = (x,st=false) => {const k=CHIPK[x], kc=k&&(['lime','amber','rose'].includes(k)?`var(--s-${k})`:`var(--hl-${k})`);
