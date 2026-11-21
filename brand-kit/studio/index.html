@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DT Banner de evento</title>
+<meta name="description" content="Plantilla de banners de evento de Design Technology LAC (Estilo 7): escribe título, fecha y lugar, elige formato y cluster, y descarga el PNG.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* DT Brand Kit · Estilo 7 «Terreno esquemático» · tokens del kit (design-tokens.json) */
+:root{
+  --ink:#0B0C0D;--carbon:#151719;--panel:#1B1D20;--panel-2:#232528;--rule:#2E3033;
+  --fog:#F2F2F0;--steel:#A3A8AD;--dim:#7A7F85;
+  --accent:#2A62F0;--accent-text:#5B8CFF;
+  --vdc:#3FE0D0;--rc:#FF8A4C;--cd:#C3A6FF;--di:#6FB6FF;
+  --f:'Inter Tight',Segoe UI,system-ui,sans-serif;--fm:'JetBrains Mono',Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--ink);color:var(--fog);font:400 15px/1.55 var(--f)}
+.app{display:grid;grid-template-columns:360px minmax(0,1fr);height:100vh}
+.side{background:var(--carbon);border-right:1px solid var(--rule);padding:28px 24px 32px;display:flex;flex-direction:column;gap:20px;overflow:auto}
+.brand{display:flex;align-items:center;gap:12px}
+.brand svg{width:36px;height:36px;flex:none}
+.brand b{display:block;font-weight:600;font-size:15px;line-height:1.2}
+.brand small{display:block;font:500 10.5px/1.3 var(--fm);letter-spacing:.12em;text-transform:uppercase;color:var(--steel)}
+h1{font-weight:300;font-size:30px;line-height:1.06;letter-spacing:-.035em;margin:4px 0 0}
+h1 em{font-style:normal;color:var(--dim)}
+h1 .sdot{display:inline-block;width:.17em;height:.17em;background:var(--accent);margin-left:.05em}
+.lab{display:block;font:500 10.5px/1.3 var(--fm);letter-spacing:.12em;text-transform:uppercase;color:var(--steel);margin-bottom:6px}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{padding:0}
+.f{display:flex;flex-direction:column}
+input[type=text]{width:100%;height:36px;padding:0 10px;background:var(--panel);color:var(--fog);border:1px solid var(--rule);border-radius:4px;font:400 14px var(--f)}
+input[type=text]:focus-visible,select:focus-visible,button:focus-visible,input[type=range]:focus-visible,.seg input:focus-visible+span{outline:2px solid var(--accent-text);outline-offset:2px}
+.hint{font-size:12px;color:var(--steel);margin-top:4px}
+.seg{display:grid;gap:6px}
+.seg.c2{grid-template-columns:1fr 1fr}
+.seg label{position:relative;cursor:pointer}
+.seg input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.seg span{display:flex;align-items:center;gap:8px;min-height:40px;padding:6px 10px;border-radius:4px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--rule);font-size:13px;line-height:1.25}
+.seg span{flex-wrap:wrap;column-gap:8px;row-gap:0}.seg span small{display:block;flex-basis:100%;font:400 11px var(--fm);color:var(--steel);letter-spacing:.04em}
+.seg input:checked+span{box-shadow:inset 0 0 0 1px var(--accent-text);background:var(--panel-2)}
+.sw{width:10px;height:10px;flex:none}
+.row{display:flex;align-items:center;gap:10px}
+.row input[type=range]{flex:1;accent-color:var(--accent)}
+.chk{display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;min-height:32px}
+.chk input{width:18px;height:18px;accent-color:var(--accent)}
+.btn{height:44px;border:0;border-radius:4px;background:var(--accent);color:#fff;font:600 14px var(--f);cursor:pointer;padding:0 18px}
+.btn:hover{background:#1F55E0}
+.btn.ghost{background:transparent;color:var(--fog);box-shadow:inset 0 0 0 1px var(--steel)}
+.btn.ghost:hover{background:var(--panel)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.main{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;gap:16px;
+  background:linear-gradient(rgba(242,242,240,.035) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,rgba(242,242,240,.035) 1px,transparent 1px) 0 0/24px 24px,#111315}
+.stage{position:relative;max-width:100%}
+.stage canvas{display:block;max-width:100%;height:auto;box-shadow:0 0 0 1px var(--rule)}
+.meta{font:400 12px var(--fm);color:var(--steel);letter-spacing:.04em}
+.x7{position:absolute;width:11px;height:11px;opacity:.5;background:linear-gradient(var(--fog),var(--fog)) 0 5px/11px 1px no-repeat,linear-gradient(var(--fog),var(--fog)) 5px 0/1px 11px no-repeat}
+@media (max-width:900px){.app{grid-template-columns:1fr;height:auto}.side{overflow:visible}.side{border-right:0;border-bottom:1px solid var(--rule);padding:20px 16px}.main{padding:20px 16px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <form class="side" id="form" autocomplete="off" onsubmit="return false">
+    <div class="brand" aria-hidden="true"><svg viewBox="0 0 44 44"><defs><linearGradient id="ui-g" gradientUnits="userSpaceOnUse" x1="4" y1="2" x2="52" y2="62"><stop offset="0" stop-color="#8AA9F7"/><stop offset=".5" stop-color="#2A62F0"/><stop offset="1" stop-color="#1E419A"/></linearGradient></defs><rect width="44" height="44" fill="url(#ui-g)"/><text x="7" y="31" font-family="Inter Tight" font-weight="700" font-size="21" letter-spacing="-1.2" fill="#0B0C0D">dt</text><rect x="32" y="26" width="5" height="5" fill="#0B0C0D"/></svg>
+      <div><b>Design Technology LAC</b><small>DT Brand Kit · Estilo 7</small></div></div>
+    <h1>Banner de evento<span class="sdot"></span><br><em>Escribe, elige y descarga</em></h1>
+
+    <div class="f"><label class="lab" for="kicker">Etiqueta</label><input type="text" id="kicker" value="DT LAC · Event"><span class="hint">Mono, mayúsculas. Etiqueta de sistema, no frase.</span></div>
+    <div class="f"><label class="lab" for="t1">Título</label><input type="text" id="t1" value="Digital Transformation"></div>
+    <div class="f"><label class="lab" for="t2">Remate (segunda línea, en gris)</label><input type="text" id="t2" value="Fest"><span class="hint">Titular en dos tiempos, ≤ 45 caracteres en total. Sin «—».</span></div>
+    <div class="f"><label class="lab" for="date">Fecha</label><input type="text" id="date" value="Thu 11 Mar 2027 · 09:00–18:00"></div>
+    <div class="f"><label class="lab" for="place">Lugar</label><input type="text" id="place" value="Mexico City office + Teams"></div>
+
+    <fieldset><legend class="lab">Formato</legend>
+      <div class="seg c2" id="fmt">
+        <label><input type="radio" name="fmt" value="sharepoint" checked><span>SharePoint<small>1920 × 1080</small></span></label>
+        <label><input type="radio" name="fmt" value="correo"><span>Correo<small>1200 × 400</small></span></label>
+        <label><input type="radio" name="fmt" value="linkedin"><span>LinkedIn<small>1200 × 627</small></span></label>
+        <label><input type="radio" name="fmt" value="cuadrado"><span>Cuadrado<small>1080 × 1080</small></span></label>
+      </div></fieldset>
+
+    <fieldset><legend class="lab">Paleta</legend>
+      <div class="seg c2" id="pal">
+        <label><input type="radio" name="pal" value="dt" checked><span><i class="sw" style="background:#2A62F0"></i>DT · cobalt</span></label>
+        <label><input type="radio" name="pal" value="vdc"><span><i class="sw" style="background:var(--vdc)"></i>VDC</span></label>
+        <label><input type="radio" name="pal" value="rc"><span><i class="sw" style="background:var(--rc)"></i>Reality Capture</span></label>
+        <label><input type="radio" name="pal" value="cd"><span><i class="sw" style="background:var(--cd)"></i>Comp. Design</span></label>
+        <label><input type="radio" name="pal" value="di"><span><i class="sw" style="background:var(--di)"></i>Data Intelligence</span></label>
+      </div></fieldset>
+
+    <div class="f"><label class="lab" for="seed">Instante del campo</label><div class="row"><input type="range" id="seed" min="0" max="120" step="1" value="14"><span class="meta" id="seedv">14</span></div></div>
+    <label class="chk"><input type="checkbox" id="map" checked>Mapa LAC y oficinas</label>
+    <label class="chk"><input type="checkbox" id="bare">Solo fondo (sin texto)</label>
+
+  </form>
+  <main class="main">
+    <div class="stage" id="stage"><canvas id="cv" role="img" aria-label="Vista previa del banner"></canvas></div>
+    <div class="meta" id="info"></div>
+    <div class="btns">
+      <button type="button" class="btn" id="dl" form="form">Descargar PNG</button>
+      <button type="button" class="btn ghost" id="dlbg" form="form">Descargar solo el fondo</button>
+    </div>
+  </main>
+</div>
+
+<script>
+/* =====================================================================================
+   Motor: puerto fiel de hv7Mount() de maqueta/index.html (variante Halftone), sin dependencias.
+   hvField = el degradado (manchas que derivan + cinta diagonal; la izquierda se apaga para el texto)
+   rampa azul del header (--hv-ramp) o rampa negro → color del cluster («Cluster colors · banners»)
+   halftone = puntos de radio ∝ √valor; sobre la tierra de LAC el punto sube de valor; oficinas en el acento; red de arcos.
+   ===================================================================================== */
+const RAMP_DT='#02040B 0,#040A22 .2,#08185A .4,#1233A6 .58,#2348C8 .7,#4F8CE6 .82,#A8D8F8 .93,#E8F3FD 1';
+const CL={vdc:'#3FE0D0',rc:'#FF8A4C',cd:'#C3A6FF',di:'#6FB6FF'};
+const COBALT='#2A62F0',COBALT_TEXT='#5B8CFF';
+function hv7Ramp(str){
+  const hx=c=>{c=c.replace('#','');const n=parseInt(c,16);return[n>>16&255,n>>8&255,n&255]};
+  const st=String(str).split(',').map(s=>s.trim().split(/\s+/)).map(([c,p])=>[hx(c),+p]).sort((a,b)=>a[1]-b[1]);
+  const L=new Uint8ClampedArray(768);
+  for(let i=0;i<256;i++){const x=i/255;let k=0;while(k<st.length-2&&x>st[k+1][1])k++;const[a,pa]=st[k],[b,pb]=st[k+1],f=Math.max(0,Math.min(1,(x-pa)/((pb-pa)||1)));
+    for(let c=0;c<3;c++)L[i*3+c]=a[c]+(b[c]-a[c])*f}
+  return L}
+function clusterRamp(K){const k=[1,3,5].map(i=>parseInt(K.slice(i,i+2),16)),Wt=[255,255,255],mx=(a,b,f)=>'#'+a.map((v,i)=>Math.round(v+(b[i]-v)*f).toString(16).padStart(2,'0')).join('');
+  return `#030406 0,${mx([5,6,9],k,.09)} .24,${mx([6,7,10],k,.22)} .44,${mx([8,9,12],k,.48)} .62,${mx([8,9,12],k,.8)} .76,${K} .87,${mx(k,Wt,.55)} 1`}
+const hvH=(a,b=0,c=0)=>{let h=Math.imul(a|0,374761393)^Math.imul(b|0,668265263)^Math.imul(c|0,1274126177);h=Math.imul(h^h>>>13,1103515245);return((h^h>>>16)>>>0)/4294967296};
+function hvField(u,v,t){
+  const A=2.58,T=t*1.5,x=u*A;
+  const wu=u+.035*Math.sin(v*3.1+T*.23)+.02*Math.sin(x*2.3-T*.17), wv=v+.06*Math.sin(x*1.4-T*.19)+.03*Math.sin(v*4.2+x*.9+T*.29);
+  const g=(cx,cy,rx,ry,a)=>{const dx=(wu-cx)*A/rx,dy=(wv-cy)/ry;return a*Math.exp(-.5*(dx*dx+dy*dy))};
+  let s=g(.9+.05*Math.sin(T*.071),.02+.1*Math.sin(T*.053+1),.55,.5,1.05)
+       +g(.7+.08*Math.sin(T*.043+2),1.04+.05*Math.sin(T*.061),.75,.28,.85)
+       +g(.36+.06*Math.sin(T*.037+4),.62+.1*Math.sin(T*.049+3),.55,.22,.3)
+       +g(1.02,.55+.18*Math.sin(T*.031+5),.35,.45,.55);
+  const yc=1.02-.95*wu+.07*Math.sin(wu*5.2+T*.27), d=(wv-yc)/(.075+.03*Math.sin(T*.21+wu*3));
+  s+=.62*Math.exp(-.5*d*d)*(.35+.65*Math.min(1,wu*1.6));
+  let I=1-Math.exp(-1.12*s);
+  const m=Math.min(1,Math.max(0,(.62-u)/.32));I*=1-.5*m*m*(3-2*m);
+  return I}
+const ss=(a,b,x)=>{const t=Math.max(0,Math.min(1,(x-a)/(b-a)));return t*t*(3-2*t)};
+
+/* tierra de LAC: malla de lacMap() (paso 11 en una caja de 1000), por filas «inicio.largo», y las 6 oficinas (col, fila) */
+const LAND={cols:71,rows:88,runs:'0.3;0.2,3.7;1.1,3.8;2.1,4.10;2.1,5.10;2.2,6.9;4.1,7.9;4.1,8.9,34.1;5.1,9.8,35.1;9.8,29.3,36.1;10.7,32.2;10.7,23.3,34.2;10.8,23.3,38.3;11.8,22.3,34.1,39.3,43.1;14.11,47.1;16.9,48.1;21.8;22.7,48.1;25.4,48.2;26.3,39.1,48.1;27.2,36.6,48.1;28.2,36.13;29.3,33.1,35.14;34.17;34.18;34.22;35.22;34.23;33.25;32.26;32.27;31.31;32.35;31.38;31.40;32.39;33.38;33.38;34.37;34.36;35.34;35.33;36.32;37.31;38.30;40.28;41.26;41.26;41.25;41.25;40.25;40.22;40.20;40.20;40.19;40.19;40.19;40.18;40.17;39.18;39.17;39.16;39.12;39.13;38.14;38.14;38.13;37.11;37.11;38.8;37.9;37.8;37.8;37.8;37.7;36.7;36.8;36.8;36.8;36.7;36.6;36.6;37.5;37.5;38.4;38.4;39.4;40.2',
+  off:[[14.93,12.24,'Mexico City'],[13.89,6.34,'Monterrey'],[28.04,20.8,'San José'],[40.37,13.11,'Santo Domingo'],[36.76,25.39,'Bogotá'],[50.42,61.65,'Buenos Aires']]};
+const LAND_PTS=(()=>{const p=[];LAND.runs.split(';').forEach((r,j)=>{if(!r)return;r.split(',').forEach(s=>{const[a,n]=s.split('.').map(Number);for(let i=a;i<a+n;i++)p.push([i,j])})});return p})();
+
+/* formatos: tamaño final, márgenes, tamaños de texto, caja del mapa (fracciones) y máscara de la zona de texto */
+const FMT={
+  sharepoint:{W:1920,H:1080,pad:120,logo:60,title:140,kick:22,meta:30,lab:15,maxW:1180,lines:3,map:[.63,.1,.8],
+    mask:(u,v)=>.22+.78*ss(.16,.6,u)},
+  correo:{W:1200,H:400,pad:48,logo:36,ltop:34,title:58,kick:14,meta:19,lab:11,maxW:640,lines:2,map:[.71,.06,.88],
+    mask:(u,v)=>.2+.8*ss(.25,.68,u)},
+  linkedin:{W:1200,H:627,pad:72,logo:46,title:88,kick:16,meta:21,lab:12,maxW:700,lines:3,map:[.64,.07,.86],
+    mask:(u,v)=>.22+.78*ss(.18,.64,u)},
+  cuadrado:{W:1080,H:1080,pad:88,logo:56,title:116,kick:20,meta:26,lab:14,maxW:880,lines:3,map:[.5,.05,.58],
+    mask:(u,v)=>1-.84*ss(.78,.3,u)*ss(.32,.62,v)-.35*ss(.5,1,v)*ss(.6,.2,u)}
+};
+
+function paletteOf(p){return p==='dt'?{ramp:RAMP_DT,acc:COBALT,accText:COBALT_TEXT,cols:[CL.vdc,CL.rc,CL.cd,CL.di],gain:.84,tail:'rgba(204,219,248,.72)'}
+  :{ramp:clusterRamp(CL[p]),acc:CL[p],accText:CL[p],cols:[CL[p]],gain:1.22,tail:'rgba(226,228,232,.6)'}}
+
+/* ---------- fondo ---------- */
+function drawArt(ctx,f,pal,o){
+  const {W,H}=f,LUT=hv7Ramp(pal.ramp),t=o.seed,k=Math.max(1,W/1440),c=8*k,NB=24;
+  const F=(u,v)=>Math.max(0,Math.min(1,hvField(u,v,t)*f.mask(u,v)*pal.gain));
+  const rgb=x=>{const i=Math.max(0,Math.min(255,Math.round(x*255)))*3;return `rgb(${LUT[i]},${LUT[i+1]},${LUT[i+2]})`};
+  ctx.fillStyle=rgb(.03);ctx.fillRect(0,0,W,H);
+  /* mapa: caja [x, y, alto] en fracciones; la malla conserva su proporción */
+  let land=null,off=[];
+  if(o.map&&pal.map!==false){const[bx,by,bh]=f.map,ch=bh*H/LAND.rows,X0=bx*W,Y0=by*H;
+    const MS=4,mw=Math.ceil(W/MS)+1,mh=Math.ceil(H/MS)+1,mask=new Uint8Array(mw*mh),rr=ch*.75;
+    LAND_PTS.forEach(([i,j])=>{const x=X0+i*ch,y=Y0+j*ch;for(let jj=Math.floor((y-rr)/MS);jj<=Math.ceil((y+rr)/MS);jj++)for(let ii=Math.floor((x-rr)/MS);ii<=Math.ceil((x+rr)/MS);ii++)
+      if(ii>=0&&jj>=0&&ii<mw&&jj<mh&&Math.hypot(ii*MS-x,jj*MS-y)<=rr)mask[jj*mw+ii]=1});
+    land=(x,y)=>{const i=Math.round(x/MS),j=Math.round(y/MS);return i>=0&&j>=0&&i<mw&&j<mh&&mask[j*mw+i]===1};
+    off=LAND.off.map(([i,j])=>[X0+i*ch,Y0+j*ch]);}
+  /* halftone */
+  const B=Array.from({length:NB},()=>new Path2D()),nx=Math.ceil(W/c),ny=Math.ceil(H/c);
+  for(let j=0;j<ny;j++)for(let i=0;i<nx;i++){const x=(i+.5)*c,y=(j+.5)*c;let I=F(x/W,y/H);if(land&&land(x,y))I=Math.min(1,I*.8+.3);
+    const r=c*.5*Math.sqrt(I)*(.88+.12*Math.sin(t*2.1+i*.31+j*.23));if(r<.5*k)continue;
+    const b=Math.min(NB-1,Math.round(Math.min(1,.2+.8*I)*(NB-1)));B[b].moveTo(x+r,y);B[b].arc(x,y,r,0,6.2832)}
+  B.forEach((p,i)=>{ctx.fillStyle=rgb(i/(NB-1));ctx.fill(p)});
+  /* red entre oficinas (mismo hash por ranura de 1.5 s que el motor) */
+  if(off.length>1){const n=off.length;ctx.lineWidth=1.25*k;
+    for(let s=Math.floor(t/1.5)-2;s<=Math.floor(t/1.5);s++){if(s<0)continue;const a=Math.floor(hvH(s,7)*n);let b=Math.floor(hvH(s,11)*n);if(b===a)b=(a+1+Math.floor(hvH(s,13)*(n-1)))%n;
+      const L={a,b,born:s*1.5,life:4.4,c:pal.cols[s%pal.cols.length]},q=(t-L.born)/L.life;if(q>=1||q<0)continue;
+      const[ax,ay]=off[a],[bx,by]=off[b],mx=(ax+bx)/2+(by-ay)*.28,my=(ay+by)/2-(bx-ax)*.28,op=q<.15?q/.15:q>.8?(1-q)/.2:1;
+      ctx.globalAlpha=.62*op;ctx.strokeStyle=L.c;ctx.beginPath();ctx.moveTo(ax,ay);ctx.quadraticCurveTo(mx,my,bx,by);ctx.stroke();
+      const p=Math.min(1,q/.75),e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;ctx.fillStyle=L.c;
+      for(let g=0;g<4;g++){const s2=Math.max(0,e-g*.035),u=1-s2,x=u*u*ax+2*u*s2*mx+s2*s2*bx,y=u*u*ay+2*u*s2*my+s2*s2*by,z=(g?2.2:3.6)*k;ctx.globalAlpha=op*(1-g*.24);ctx.fillRect(x-z/2,y-z/2,z,z)}}
+    ctx.globalAlpha=1;
+    /* oficinas en el acento: punto + anillo */
+    off.forEach(([x,y])=>{ctx.fillStyle=pal.acc;ctx.beginPath();ctx.arc(x,y,3.4*k,0,6.2832);ctx.fill();
+      ctx.strokeStyle=pal.acc;ctx.lineWidth=1*k;ctx.globalAlpha=.55;ctx.beginPath();ctx.arc(x,y,7.5*k,0,6.2832);ctx.stroke();ctx.globalAlpha=1})}
+  /* grano (como .grain::after del header, en overlay) */
+  const nz=document.createElement('canvas');nz.width=nz.height=220;const nc=nz.getContext('2d'),id=nc.createImageData(220,220);
+  for(let i=0;i<220*220;i++){const v=hvH(i,77,3)*255;id.data[i*4]=id.data[i*4+1]=id.data[i*4+2]=v;id.data[i*4+3]=255}
+  nc.putImageData(id,0,0);ctx.save();ctx.globalCompositeOperation='overlay';ctx.globalAlpha=.07;ctx.fillStyle=ctx.createPattern(nz,'repeat');ctx.fillRect(0,0,W,H);ctx.restore();
+  /* cruces de registro en las 4 esquinas (brazo 11 px, opacidad .5) */
+  const ci=Math.round(f.pad*.4),arm=Math.round(11*k)|1;
+  ctx.fillStyle='rgba(242,242,240,.5)';
+  [[ci,ci],[W-ci,ci],[ci,H-ci],[W-ci,H-ci]].forEach(([x,y])=>{ctx.fillRect(x-(arm>>1),y,arm,Math.max(1,Math.round(k)));ctx.fillRect(x,y-(arm>>1),Math.max(1,Math.round(k)),arm)});
+}
+
+/* ---------- logo L00 en canvas ---------- */
+function drawLogo(ctx,x,y,s){const u=s/44;ctx.save();ctx.translate(x,y);ctx.scale(u,u);
+  const g=ctx.createLinearGradient(4,2,52,62);g.addColorStop(0,'#8AA9F7');g.addColorStop(.5,'#2A62F0');g.addColorStop(1,'#1E419A');
+  ctx.fillStyle=g;ctx.fillRect(0,0,44,44);ctx.fillStyle='#0B0C0D';ctx.font='700 21px "Inter Tight"';ctx.letterSpacing='-1.2px';ctx.textBaseline='alphabetic';ctx.fillText('dt',7,31);ctx.fillRect(32,26,5,5);ctx.restore();ctx.letterSpacing='0px'}
+
+/* ---------- texto ---------- */
+function setFont(ctx,w,px,fam,track){ctx.font=`${w} ${px}px ${fam}`;ctx.letterSpacing=track?`${track}px`:'0px'}
+function wrap(ctx,text,maxW){const words=String(text).trim().split(/\s+/).filter(Boolean),lines=[];let cur='';
+  for(const w of words){const t=cur?cur+' '+w:w;if(cur&&ctx.measureText(t).width>maxW){lines.push(cur);cur=w}else cur=t}if(cur)lines.push(cur);return lines}
+function drawText(ctx,f,pal,o){
+  const {W,H,pad}=f,k=W/1920,INTER='"Inter Tight", "Segoe UI", sans-serif',MONO='"JetBrains Mono", Consolas, monospace';
+  ctx.textBaseline='alphabetic';
+  /* lockup del logo arriba a la izquierda */
+  const L=f.logo,LT=f.ltop??pad;drawLogo(ctx,pad,LT,L);
+  setFont(ctx,600,Math.round(L*.34),INTER,0);ctx.fillStyle='#F2F2F0';ctx.fillText('Design Technology LAC',pad+L+L*.36,LT+L*.46);
+  setFont(ctx,500,Math.round(L*.2),MONO,L*.2*.14);ctx.fillStyle='rgba(226,236,255,.72)';ctx.fillText('GENSLER · LATIN AMERICA & CARIBBEAN',pad+L+L*.36,LT+L*.84);
+  /* fila de metadatos abajo: etiqueta mono + valor, con filete de 1 px encima */
+  const metaY=H-pad, labY=metaY-f.meta-f.lab*.9, ruleY=labY-f.lab-f.meta*.9;
+  const cols=[['Date',o.date],['Place',o.place]].filter(x=>x[1]);
+  const colW=f.W>=1900?560:f.W>=1180?(f.H<500?340:380):420;
+  setFont(ctx,500,f.meta,INTER,0);
+  cols.forEach(([lab,val],i)=>{const x=pad+i*colW;
+    setFont(ctx,500,f.lab,MONO,f.lab*.14);ctx.fillStyle='rgba(163,168,173,.95)';ctx.fillText(lab.toUpperCase(),x,labY);
+    let px=f.meta;setFont(ctx,500,px,INTER,0);const lim=(i===cols.length-1?f.maxW+pad-x:colW-24*Math.max(.6,k));
+    while(ctx.measureText(val).width>lim&&px>f.meta*.62){px-=1;setFont(ctx,500,px,INTER,0)}
+    ctx.fillStyle='#F2F2F0';ctx.fillText(val,x,metaY)});
+  ctx.fillStyle='rgba(242,242,240,.22)';ctx.fillRect(pad,Math.round(ruleY),f.maxW,Math.max(1,Math.round(k)));
+  /* titular en dos tiempos: frase en blanco + remate en gris en línea nueva + punto de acento */
+  let size=f.title,lines;
+  for(;;){setFont(ctx,300,size,INTER,-size*.045);
+    const a=wrap(ctx,o.t1,f.maxW).map(s=>[s,'#F2F2F0']),b=o.t2?wrap(ctx,o.t2,f.maxW-size*.3).map(s=>[s,pal.tail]):[];
+    lines=a.concat(b);if(lines.length<=f.lines||size<=f.title*.55)break;size=Math.round(size*.94)}
+  const lh=size*.95,bottom=ruleY-f.meta*1.5-size*.24;
+  let y=bottom-(lines.length-1)*lh;
+  const kickY=y-size*.78-f.kick*1.6;
+  setFont(ctx,500,f.kick,MONO,f.kick*.14);ctx.fillStyle=pal.accText;ctx.fillText(String(o.kicker||'').toUpperCase(),pad+2*k,kickY);
+  setFont(ctx,300,size,INTER,-size*.045);
+  lines.forEach(([s,col],i)=>{ctx.fillStyle=col;ctx.fillText(s,pad-size*.035,y);
+    if(i===lines.length-1){const w=ctx.measureText(s).width,d=size*.17;ctx.fillStyle=pal.acc;ctx.fillRect(Math.round(pad-size*.035+w+size*.06),Math.round(y-d),Math.round(d),Math.round(d))}
+    y+=lh});
+}
+
+/* ---------- API ---------- */
+async function render(cv,o){
+  const f=FMT[o.fmt]||FMT.sharepoint,pal=paletteOf(o.pal||'dt');
+  try{await Promise.all([document.fonts.load('300 40px "Inter Tight"'),document.fonts.load('500 40px "Inter Tight"'),document.fonts.load('600 40px "Inter Tight"'),document.fonts.load('700 40px "Inter Tight"'),document.fonts.load('500 20px "JetBrains Mono"')])}catch(e){}
+  cv.width=f.W;cv.height=f.H;const ctx=cv.getContext('2d');
+  drawArt(ctx,f,pal,o);if(!o.bare)drawText(ctx,f,pal,o);
+  return cv}
+window.dtBanner={render,FMT};
+
+/* ---------- interfaz ---------- */
+const $=id=>document.getElementById(id),cv=$('cv');
+const state=()=>({fmt:document.querySelector('input[name=fmt]:checked').value,pal:document.querySelector('input[name=pal]:checked').value,
+  kicker:$('kicker').value,t1:$('t1').value,t2:$('t2').value,date:$('date').value,place:$('place').value,seed:+$('seed').value,map:$('map').checked,bare:$('bare').checked});
+let pending=0;
+function update(){cancelAnimationFrame(pending);pending=requestAnimationFrame(async()=>{const s=state();$('seedv').textContent=s.seed;await render(cv,s);
+  const f=FMT[s.fmt];$('info').textContent=`${f.W} × ${f.H} px · ${s.pal==='dt'?'DT cobalt':s.pal.toUpperCase()} · ${s.bare?'solo fondo':'con texto'}`;
+  cv.setAttribute('aria-label',s.bare?'Fondo del banner sin texto':`Banner: ${s.t1} ${s.t2}. ${s.date}. ${s.place}.`)})}
+$('form').addEventListener('input',update);$('form').addEventListener('change',update);
+const slug=s=>String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+async function download(bare){const s={...state(),bare:bare||state().bare},c=document.createElement('canvas');await render(c,s);const f=FMT[s.fmt];
+  c.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`dt-evento-${s.bare?'fondo':slug(s.t1+' '+s.t2)||'banner'}-${s.fmt}-${s.pal}-${f.W}x${f.H}.png`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)},'image/png')}
+$('dl').addEventListener('click',()=>download(false));$('dlbg').addEventListener('click',()=>download(true));
+/* parámetros por URL (para scripts): ?fmt=correo&pal=cd&bare=1&seed=20&t1=…&t2=… */
+(()=>{const q=new URLSearchParams(location.search);
+  ['kicker','t1','t2','date','place','seed'].forEach(k=>{if(q.has(k))$(k).value=q.get(k)});
+  if(q.has('fmt'))document.querySelector(`input[name=fmt][value="${q.get('fmt')}"]`)?.click();
+  if(q.has('pal'))document.querySelector(`input[name=pal][value="${q.get('pal')}"]`)?.click();
+  if(q.get('map')==='0')$('map').checked=false;if(q.get('bare')==='1')$('bare').checked=true})();
+document.fonts.ready.then(update);update();
+</script>
+</body>
+</html>
