@@ -264,42 +264,6 @@
     "alt": "Computational Design LATAM brand cover with soft gradient orbs"
   },
   {
-    "archivo": "persona-lead-latam.jpg",
-    "ancho": 1600,
-    "alto": 1067,
-    "peso_kb": 255,
-    "tipo": "persona",
-    "slide": 4,
-    "tema": "Regional lead portrait in office",
-    "cluster_sugerido": "Computational Design",
-    "uso_sugerido": "community",
-    "alt": "Portrait of a team member standing in a glass office"
-  },
-  {
-    "archivo": "persona-computational-designer.jpg",
-    "ancho": 1024,
-    "alto": 1024,
-    "peso_kb": 100,
-    "tipo": "persona",
-    "slide": 4,
-    "tema": "Computational designer portrait",
-    "cluster_sugerido": "Computational Design",
-    "uso_sugerido": "community",
-    "alt": "Portrait of a smiling team member in a dark sweater"
-  },
-  {
-    "archivo": "persona-design-technology.jpg",
-    "ancho": 1280,
-    "alto": 1280,
-    "peso_kb": 177,
-    "tipo": "persona",
-    "slide": 8,
-    "tema": "Design Technology team member portrait",
-    "cluster_sugerido": "Computational Design",
-    "uso_sugerido": "community",
-    "alt": "Portrait of a team member in a light blue shirt in an office"
-  },
-  {
     "archivo": "gif-gblox-co2-metrics.gif",
     "ancho": 1280,
     "alto": 800,
